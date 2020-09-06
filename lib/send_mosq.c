@@ -4,12 +4,12 @@ Copyright (c) 2009-2020 Roger Light <roger@atchoo.org>
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 and Eclipse Distribution License v1.0 which accompany this distribution.
- 
+
 The Eclipse Public License is available at
    http://www.eclipse.org/legal/epl-v10.html
 and the Eclipse Distribution License is available at
   http://www.eclipse.org/org/documents/edl-v10.php.
- 
+
 Contributors:
    Roger Light - initial implementation and documentation.
 */
@@ -44,9 +44,9 @@ int send__pingreq(struct mosquitto *mosq)
 	int rc;
 	assert(mosq);
 #ifdef WITH_BROKER
-	log__printf(NULL, MOSQ_LOG_DEBUG, "Sending PINGREQ to %s", mosq->id);
+	log__printf(NULL, MOSQ_LOG_PING, "Sending PINGREQ to %s", mosq->id);
 #else
-	log__printf(mosq, MOSQ_LOG_DEBUG, "Client %s sending PINGREQ", mosq->id);
+	log__printf(mosq, MOSQ_LOG_PING, "Client %s sending PINGREQ", mosq->id);
 #endif
 	rc = send__simple_command(mosq, CMD_PINGREQ);
 	if(rc == MOSQ_ERR_SUCCESS){
@@ -58,9 +58,9 @@ int send__pingreq(struct mosquitto *mosq)
 int send__pingresp(struct mosquitto *mosq)
 {
 #ifdef WITH_BROKER
-	log__printf(NULL, MOSQ_LOG_DEBUG, "Sending PINGRESP to %s", mosq->id);
+	log__printf(NULL, MOSQ_LOG_PING, "Sending PINGRESP to %s", mosq->id);
 #else
-	log__printf(mosq, MOSQ_LOG_DEBUG, "Client %s sending PINGRESP", mosq->id);
+	log__printf(mosq, MOSQ_LOG_PING, "Client %s sending PINGRESP", mosq->id);
 #endif
 	return send__simple_command(mosq, CMD_PINGRESP);
 }
